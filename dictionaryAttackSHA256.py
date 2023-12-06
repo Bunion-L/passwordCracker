@@ -8,18 +8,17 @@ common_passwords = file.readlines()
 hashed_password = input("Enter the SHA256 hash: ")
 # Runs popular passwords and encodes them in SHA256 to compare to the given hash
 i = 0
-password = common_passwords[i]
-for password in common_passwords:
-    print("test")
-    possible_password = password.encode()
-    hashed_possible_password = hashlib.sha256(possible_password)
-    hashed_possible_password.hexdigest()
+answr = False
+while i < len(common_passwords):
+    possible_password = common_passwords[i]
+    hashed_possible_password = hashlib.sha256(bytes(possible_password, 'utf-8')).hexdigest()
     if hashed_possible_password == hashed_password:
             print(f"Password found: {possible_password}")
+            answr = True
             break
     else:
         i += 1
         continue
-else:
+if answr == False:
     print("Password not found")
-file.close()
+    file.close()
