@@ -5,7 +5,7 @@ print(os.getcwd())
 file = open("commonPasswords.txt", "r")
 common_passwords = file.readlines()
 # Hash of the password to be attacked
-hashed_password = input("Enter the SHA256 hash: ")
+hashed_password = input("Enter the MD5 hash: ")
 #print(hashed_password)
 # Runs popular passwords and encodes them in SHA256 to compare to the given hash
 i = 0
