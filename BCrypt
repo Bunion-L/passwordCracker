@@ -10,15 +10,14 @@ hashed_password = input("Enter the BCrypt hash: ")
 # Runs popular passwords and encodes them in SHA256 to compare to the given hash
 i = 0
 answr = False
-salt = 
-while i < len(common_passwords):
-    possible_password = common_passwords[i].rstrip()
-    #print(possible_password)
-    hashed_possible_password = bcrypt.hashpw(bytes(possible_password, 'utf-8')).salt()
-    if hashed_possible_password == hashed_password:
-            print(f"Password found: {possible_password}")
-            answr = True
-            break
+for line in common_passwords:
+    temp_line = line.rstrip().encode('utf-8')
+    temp_hash = hashed_password.rstrip().encode('utf-8')
+    check = ""
+    if bcrypt.checkpw(temp_line, temp_hash):
+        print("Password Found: " + line)
+        answr = True
+        break
     else:
         i += 1
         continue
